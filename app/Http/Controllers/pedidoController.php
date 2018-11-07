@@ -35,6 +35,7 @@ class pedidoController extends Controller
     public function store(Request $request)
     {
         //
+        return \session('carrinho');
     }
 
     /**

@@ -14,7 +14,11 @@
                     <div class="col-md-6 mt-5">
                         <h3 class="product-title">{{ $produto->nome }}</h3>
                         <p>{{ $produto->detalhe }}</p>
-                        <small>{{ $produto->categoria->nome }}</small>
+                        <small>
+                            @foreach ($produto->categorias as $categoria)
+                                {{ $categoria->nome }}                                
+                            @endforeach
+                        </small>
                         <hr>
                         <h4>Valor: <span>R$ {{ $produto->valor }}</span></h4>
                         <div class="mt-2">

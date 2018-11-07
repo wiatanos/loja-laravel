@@ -24,5 +24,6 @@ Route::get('finalizar-compra', 'homeController@compra');
 
 Route::resources([
     'produto'   => 'produtoController',
-    'categoria' => 'categoriaController'
+    'categoria' => 'categoriaController',
+    'pedido'    => 'pedidoController'
 ]);

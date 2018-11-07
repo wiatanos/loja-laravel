@@ -52,7 +52,12 @@
                         <th></th>
                         <th></th>
                         <th class="text-left"><h6>Total: R$ {{ \session('carrinho.total_price') }}</h6></th>
-                        <th class="text-right"><button class="btn btn-outline-success">Finalizar Compra</button></th>
+                        <th class="text-right">
+                            <form action="{{url('pedido')}}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-outline-success">Finalizar Compra</button>
+                            </form>
+                        </th>
                     </tr>
                 </tfoot>
             </table>

@@ -19,8 +19,6 @@ class CreateProdutosTable extends Migration
             $table->string('detalhe');
             $table->string('img');
             $table->decimal('valor', 8,2);
-            $table->unsignedInteger('categoria_id');
-            $table->foreign('categoria_id')->references('id')->on('categorias');
             $table->timestamps();
         });
     }
