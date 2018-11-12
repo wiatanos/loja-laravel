@@ -20,4 +20,13 @@ class Produto extends Model
     public function pedidos(){
         return $this->belongsToMany(Produto::class, 'pedidos_produtos', 'pedido_id', 'produto_id');
     }
+
+    public function toSearchableArray()
+    {
+        $record = $this->toArray();
+
+        unset($record['detalhe'], $record['img'], $record['valor'], $record['created_at'], $record['updated_at']);
+
+        return $record;
+    }
 }
