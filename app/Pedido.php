@@ -8,10 +8,14 @@ class Pedido extends Model
 {
     //
     protected $table = 'pedidos';
-    protected $fillable = ['user_id'];
+    protected $fillable = ['user_id', 'codigo', 'preco'];
 
     public function usuario(){
         return $this->belongsTo(User::class);
+    }
+
+    public function endereco(){
+        return $this->belongsTo(Endereco::class);
     }
 
     public function produtos(){

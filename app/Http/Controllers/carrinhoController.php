@@ -23,7 +23,7 @@ class carrinhoController extends Controller
         if($request->type == 'comprar'){
             return redirect('carrinho');
         }
-        return redirect()->back()->with('msg', 'Produto adicionado ao carrinho');
+        return redirect()->back()->with('alert-success', 'Produto adicionado ao carrinho');
     }
     
     public function quantity(Request $request){

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Pedido;
+use DB;
+use Auth;
 
 class pedidoController extends Controller
 {
@@ -35,7 +38,30 @@ class pedidoController extends Controller
     public function store(Request $request)
     {
         //
-        return \session('carrinho');
+        if(!Auth::check()){
+            return redirect('register')->with('mensagem', 'Quase lá, você só precisa criar uma conta ou fazer <a href="/login">login</a>');            
+        }
+        DB::beginTransaction();
+        try{
+            $pedido = new Pedido;
+            $pedido->fill([
+                'user_id'   => Auth::user()->id,
+                'preco'     => \session('carrinho')['total_price'],
+                'codigo'    => 'CO'.date('dmy').$pedido->id.rand().'BR'
+            ]);
+            $pedido->save();
+            foreach(\session('carrinho.produtos') as $produto){
+                $pedido->produtos()->attach($produto);
+            }
+            DB::commit();
+
+            \session()->forget('carrinho');
+
+            return redirect('compra-finalizada')->with('pedido', $pedido);
+        }catch(Expection $e){
+            return response()->json($e);
+        }
+        
     }
 
     /**

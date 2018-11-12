@@ -3,6 +3,7 @@
 @section('conteudo')
 <section id="carrinho">
     <div class="row">
+        @if(\session('carrinho'))
         <div class="card mt-5">
             <table class="table table-hover shopping-cart-wrap">
                 <thead class="text-muted">
@@ -42,7 +43,11 @@
                                 </div>
                             </td>
                             <td class="text-right"> 
-                                <a href="" class="btn btn-outline-danger"> × Remover</a>
+                                <form method="POST" action="{{ url('carrinho/remove') }}">
+                                    @csrf
+                                    <input name="id" value="{{$produto->id}}" hidden>
+                                    <button href="" class="btn btn-outline-danger"> × Remover</button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
@@ -63,6 +68,17 @@
             </table>
             
         </div> <!-- card.// -->
+        @else
+        <div class="col-12">
+                <div class="alert alert-light text-center" role="alert">
+                        <h4 class="alert-heading">Seu carrinho está vazio!</h4>
+                        <p>Ooops! Parece que você não adicionou produtos ao seu carrinho</p>
+                        <hr>
+                        <a class="btn btn-outline-primary" href="{{ url('/') }}">Ver Produtos</a>
+                    </div>
+        </div>
+        
+        @endif
     </div>
 </section>
 @endsection

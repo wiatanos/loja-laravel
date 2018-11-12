@@ -18,12 +18,24 @@ Route::prefix('carrinho')->group(function () {
     Route::get('/', 'homeController@carrinho');
     Route::post('/insert', 'carrinhoController@insert')->name('insert');
     Route::post('/quantity', 'carrinhoController@quantity')->name('quantity');
+    Route::post('/remove', 'carrinhoController@remove')->name('remove');
 });
 
-Route::get('finalizar-compra', 'homeController@compra');
+// Route::get('compra-finalizada', function(){
+//     return view('compra-concluida');
+// });
+
+Route::get('compra-finalizada', 'homeController@finalizada');
+Route::get('painel', 'homeController@painel');
+
+Route::post('produto/pesquisa', 'produtoController@search');
 
 Route::resources([
     'produto'   => 'produtoController',
     'categoria' => 'categoriaController',
     'pedido'    => 'pedidoController'
 ]);
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

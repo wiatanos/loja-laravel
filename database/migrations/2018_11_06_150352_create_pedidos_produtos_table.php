@@ -18,7 +18,7 @@ class CreatePedidosProdutosTable extends Migration
             $table->unsignedInteger('produto_id');
             $table->unsignedInteger('pedido_id');
             $table->foreign('produto_id')->references('id')->on('produtos');
-            $table->foreign('pedido_id')->references('id')->on('users');
+            $table->foreign('pedido_id')->references('id')->on('pedidos');
             $table->timestamps();
         });
     }

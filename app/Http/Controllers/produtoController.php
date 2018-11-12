@@ -86,4 +86,12 @@ class produtoController extends Controller
     {
         //
     }
+
+    public function search(Request $request){
+        $data = [
+            'produtos' => app('App\Produto')->search("$request->pesquisa")->get()
+        ];
+
+        return view('index', $data);
+    }
 }

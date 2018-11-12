@@ -22,7 +22,12 @@
                         <hr>
                         <h4>Valor: <span>R$ {{ $produto->valor }}</span></h4>
                         <div class="mt-2">
-                            <button class="add-to-cart btn btn-default" type="button">Adicionar ao Carinho</button>
+                            <form action="{{ url('carrinho/insert') }}" method="POST">
+                                @csrf
+                                <input name="id" value="{{ $produto->id }}" hidden>
+                                <input name="quantity" value="1" hidden>
+                                <button type="submit" href="#" class="btn">Adicionar ao Carrinho</button>
+                            </form>
                         </div>
                     </div>
                 </div>

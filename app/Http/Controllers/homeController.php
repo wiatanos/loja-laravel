@@ -9,16 +9,20 @@ class homeController extends Controller
     //
     public function index(){
         $data = [
-            'categorias' => app('App\Categoria')->all(),
             'produtos'   => app('App\Produto')->all()
         ];
         return view('index', $data);
     }
 
     public function carrinho(){
-        $data = [
-            'categorias' => app('App\Categoria')->all(),
-        ];
-        return view('carrinho', $data);
+        return view('carrinho');
+    }
+
+    public function finalizada(){
+        return view('compra-concluida');
+    }
+
+    public function painel(){
+        return view('painel');
     }
 }

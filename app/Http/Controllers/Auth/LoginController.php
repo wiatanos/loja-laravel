@@ -25,7 +25,15 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected function redirectTo()
+    {
+        /* generate URL dynamicaly */
+        if(\session('carrinho')){
+            return '/carrinho';
+        }
+        
+        return '/';
+    }
 
     /**
      * Create a new controller instance.
